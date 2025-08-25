@@ -1,5 +1,5 @@
 class Constants {
-  static String apiDomain = 'https://e-book-be2.vercel.app';
+  static String apiDomain = 'https://e-book-be2.vercel.app/';
   static String livestream = 'livestream';
 
   static String imageUrl = "https://api.imgbb.com/1/upload";

@@ -23,6 +23,8 @@ mixin _$LoginModel {
   bool? get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   Data? get data => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +38,11 @@ abstract class $LoginModelCopyWith<$Res> {
           LoginModel value, $Res Function(LoginModel) then) =
       _$LoginModelCopyWithImpl<$Res, LoginModel>;
   @useResult
-  $Res call({bool? success, String? message, Data? data});
+  $Res call(
+      {bool? success, String? message, Data? data, String? token, User? user});
 
   $DataCopyWith<$Res>? get data;
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -57,6 +61,8 @@ class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
     Object? success = freezed,
     Object? message = freezed,
     Object? data = freezed,
+    Object? token = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       success: freezed == success
@@ -71,6 +77,14 @@ class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as Data?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
     ) as $Val);
   }
 
@@ -85,6 +99,18 @@ class _$LoginModelCopyWithImpl<$Res, $Val extends LoginModel>
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -95,10 +121,13 @@ abstract class _$$LoginModelImplCopyWith<$Res>
       __$$LoginModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? success, String? message, Data? data});
+  $Res call(
+      {bool? success, String? message, Data? data, String? token, User? user});
 
   @override
   $DataCopyWith<$Res>? get data;
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -115,6 +144,8 @@ class __$$LoginModelImplCopyWithImpl<$Res>
     Object? success = freezed,
     Object? message = freezed,
     Object? data = freezed,
+    Object? token = freezed,
+    Object? user = freezed,
   }) {
     return _then(_$LoginModelImpl(
       success: freezed == success
@@ -129,6 +160,14 @@ class __$$LoginModelImplCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as Data?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 }
@@ -136,7 +175,8 @@ class __$$LoginModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoginModelImpl implements _LoginModel {
-  const _$LoginModelImpl({this.success, this.message, this.data});
+  const _$LoginModelImpl(
+      {this.success, this.message, this.data, this.token, this.user});
 
   factory _$LoginModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginModelImplFromJson(json);
@@ -147,10 +187,14 @@ class _$LoginModelImpl implements _LoginModel {
   final String? message;
   @override
   final Data? data;
+  @override
+  final String? token;
+  @override
+  final User? user;
 
   @override
   String toString() {
-    return 'LoginModel(success: $success, message: $message, data: $data)';
+    return 'LoginModel(success: $success, message: $message, data: $data, token: $token, user: $user)';
   }
 
   @override
@@ -160,12 +204,15 @@ class _$LoginModelImpl implements _LoginModel {
             other is _$LoginModelImpl &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, success, message, data);
+  int get hashCode =>
+      Object.hash(runtimeType, success, message, data, token, user);
 
   @JsonKey(ignore: true)
   @override
@@ -185,7 +232,9 @@ abstract class _LoginModel implements LoginModel {
   const factory _LoginModel(
       {final bool? success,
       final String? message,
-      final Data? data}) = _$LoginModelImpl;
+      final Data? data,
+      final String? token,
+      final User? user}) = _$LoginModelImpl;
 
   factory _LoginModel.fromJson(Map<String, dynamic> json) =
       _$LoginModelImpl.fromJson;
@@ -196,6 +245,10 @@ abstract class _LoginModel implements LoginModel {
   String? get message;
   @override
   Data? get data;
+  @override
+  String? get token;
+  @override
+  User? get user;
   @override
   @JsonKey(ignore: true)
   _$$LoginModelImplCopyWith<_$LoginModelImpl> get copyWith =>
@@ -379,6 +432,7 @@ mixin _$User {
   int? get yearOfBirth => throw _privateConstructorUsedError;
   int? get role => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -397,7 +451,8 @@ abstract class $UserCopyWith<$Res> {
       String? email,
       int? yearOfBirth,
       int? role,
-      String? password});
+      String? password,
+      String? token});
 }
 
 /// @nodoc
@@ -420,6 +475,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? yearOfBirth = freezed,
     Object? role = freezed,
     Object? password = freezed,
+    Object? token = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -450,6 +506,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -468,7 +528,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? email,
       int? yearOfBirth,
       int? role,
-      String? password});
+      String? password,
+      String? token});
 }
 
 /// @nodoc
@@ -488,6 +549,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? yearOfBirth = freezed,
     Object? role = freezed,
     Object? password = freezed,
+    Object? token = freezed,
   }) {
     return _then(_$UserImpl(
       id: freezed == id
@@ -518,6 +580,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -532,7 +598,8 @@ class _$UserImpl implements _User {
       this.email,
       this.yearOfBirth,
       this.role,
-      this.password});
+      this.password,
+      this.token});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -551,10 +618,12 @@ class _$UserImpl implements _User {
   final int? role;
   @override
   final String? password;
+  @override
+  final String? token;
 
   @override
   String toString() {
-    return 'User(id: $id, phone: $phone, userName: $userName, email: $email, yearOfBirth: $yearOfBirth, role: $role, password: $password)';
+    return 'User(id: $id, phone: $phone, userName: $userName, email: $email, yearOfBirth: $yearOfBirth, role: $role, password: $password, token: $token)';
   }
 
   @override
@@ -571,13 +640,14 @@ class _$UserImpl implements _User {
                 other.yearOfBirth == yearOfBirth) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, phone, userName, email, yearOfBirth, role, password);
+  int get hashCode => Object.hash(runtimeType, id, phone, userName, email,
+      yearOfBirth, role, password, token);
 
   @JsonKey(ignore: true)
   @override
@@ -601,7 +671,8 @@ abstract class _User implements User {
       final String? email,
       final int? yearOfBirth,
       final int? role,
-      final String? password}) = _$UserImpl;
+      final String? password,
+      final String? token}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -619,6 +690,8 @@ abstract class _User implements User {
   int? get role;
   @override
   String? get password;
+  @override
+  String? get token;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

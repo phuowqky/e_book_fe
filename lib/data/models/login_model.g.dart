@@ -13,6 +13,10 @@ _$LoginModelImpl _$$LoginModelImplFromJson(Map<String, dynamic> json) =>
       data: json['data'] == null
           ? null
           : Data.fromJson(json['data'] as Map<String, dynamic>),
+      token: json['token'] as String?,
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$LoginModelImplToJson(_$LoginModelImpl instance) =>
@@ -20,6 +24,8 @@ Map<String, dynamic> _$$LoginModelImplToJson(_$LoginModelImpl instance) =>
       'success': instance.success,
       'message': instance.message,
       'data': instance.data,
+      'token': instance.token,
+      'user': instance.user,
     };
 
 _$DataImpl _$$DataImplFromJson(Map<String, dynamic> json) => _$DataImpl(
@@ -43,6 +49,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       yearOfBirth: (json['yearOfBirth'] as num?)?.toInt(),
       role: (json['role'] as num?)?.toInt(),
       password: json['password'] as String?,
+      token: json['token'] as String?,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -54,4 +61,5 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'yearOfBirth': instance.yearOfBirth,
       'role': instance.role,
       'password': instance.password,
+      'token': instance.token,
     };

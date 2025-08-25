@@ -1,9 +1,13 @@
+import 'package:app_bong_da/controllers/auth_controller.dart';
 import 'package:app_bong_da/view/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+  static const String loginScreen = '/login_screen';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -13,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final controller = Get.put<AuthController>(AuthController());
 
   @override
   void dispose() {
@@ -99,11 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // Xử lý đăng nhập
-                          print('Email: ${_emailController.text}');
-                          print('Password: ${_passwordController.text}');
+                      onPressed: () async {
+                        final success = await controller.login(
+                            _emailController.text, _passwordController.text);
+                        if (success) {
+                          context.go('/home_screen');
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -127,39 +132,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   const SizedBox(height: 24),
 
-                  // Or sign in with
-                  // const Text(
-                  //   '- Or sign in with -',
-                  //   style: TextStyle(
-                  //     fontSize: 14,
-                  //     color: Color(0xFF6B7280),
-                  //   ),
-                  // ),
-
                   const SizedBox(height: 20),
 
-                  // Social Login Buttons
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     _socialButton(
-                  //       icon: Icons.g_translate, // Thay thế bằng Google icon
-                  //       onTap: () {},
-                  //     ),
-                  //     _socialButton(
-                  //       icon: Icons.facebook, // Thay thế bằng Facebook icon
-                  //       onTap: () {},
-                  //     ),
-                  //     _socialButton(
-                  //       icon: Icons.alternate_email, // Thay thế bằng Twitter icon
-                  //       onTap: () {},
-                  //     ),
-                  //   ],
-                  // ),
-
-                  // const Spacer(),
-
-                  // Sign up
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -172,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // Navigate to sign up
+                          context.go('/signup_screen');
                         },
                         child: const Text(
                           'Sign up',
